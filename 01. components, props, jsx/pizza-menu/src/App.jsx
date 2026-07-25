@@ -8,16 +8,16 @@ function Header() {
     );
 }
 
-function Pizza(props) {
-    if (props.pizzaObj.soldOut) return null;
+function Pizza({ pizzaObj }) {
+    if (pizzaObj.soldOut) return null;
 
     return (
         <li className="pizza">
-            <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
+            <img src={pizzaObj.photoName} alt={pizzaObj.name} />
             <div>
-                <h3>{props.pizzaObj.name}</h3>
-                <p>{props.pizzaObj.ingredients}</p>
-                <span>{props.pizzaObj.price}</span>
+                <h3>{pizzaObj.name}</h3>
+                <p>{pizzaObj.ingredients}</p>
+                <span>{pizzaObj.price}</span>
             </div>
         </li>
     );
@@ -45,42 +45,37 @@ function Menu() {
     );
 }
 
-function Order(props) {
+function Order({ closeHour }) {
     return (
         <div className="order">
             <p>
-                We are open until {props.closeHour}:00. Come visit us or order
-                online
+                We are open until {closeHour}:00. Come visit us or order online
             </p>
             <div className="btn">Order</div>
         </div>
     );
 }
 
-function Notice(props) {
+function Notice({ openHour }) {
     return (
         <div className="order">
-            <p>
-                We are open until {props.closeHour}:00. Come visit us or order
-                online
-            </p>
-            <div className="btn">Order</div>
+            <p>We are closed until {openHour}:00.</p>
         </div>
     );
 }
 
 function Footer() {
     const hour = new Date().getHours();
-    const openHour = 20;
+    const openHour = 12;
     const closeHour = 22;
     const isOpen = hour >= openHour && hour <= closeHour;
 
     return (
         <footer className="footer">
             {isOpen ? (
-                <Order openHour={openHour} closeHour={closeHour} />
+                <Order  closeHour={closeHour} />
             ) : (
-                <Notice openHour={openHour} closeHour={closeHour} />
+                <Notice openHour={openHour} />
             )}
         </footer>
     );
