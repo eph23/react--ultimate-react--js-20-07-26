@@ -8,12 +8,13 @@ My goal is to build a solid understanding of modern React by completing every le
 
 ## 📈 Progress
 
-| Section | Status |
-|---------|--------|
-| 01. Introduction | ⏳ Not Started |
+| Section                     | Status         | Date of Completion |
+| --------------------------- | -------------- | ------------------ |
+| 01. Components, Props & JSX | ✅ Completed   | 26/07/2026         |
+| 02. State, Events & Forms   | 🚧 In Progress | ----------         |
+| 03.                         | ⏳ Coming Soon |
 
-
-> **Current Section:** Introduction
+> **Current Section:** State, Events & Forms
 
 ---
 
@@ -31,10 +32,20 @@ Each course section has its own folder containing:
 
 ## 📝 What I'm Learning
 
-I'll update this section after completing each chapter.
+### ✅ Chapter 1 — Components, Props & JSX
 
-### Chapter 1
-- _Coming soon..._
+#### Key Concepts
+
+- Built reusable React components.
+- Learned how JSX works and how it differs from HTML.
+- Passed data between components using props.
+- Composed user interfaces by nesting components.
+- Kept components pure and predictable.
+- Practiced thinking in terms of reusable UI building blocks.
+
+#### Projects
+
+- ✅ Pizza Menu
 
 ---
 
@@ -58,12 +69,12 @@ I'll update this section after completing each chapter.
 
 This repository exists to:
 
-- Track my progress
-- Practice modern React
-- Document key concepts
-- Build projects
-- Create a reference for future revision
+- Track my progress.
+- Practice modern React.
+- Document key concepts.
+- Build projects.
+- Create a reference for future revision.
 
 ---
 
-> *"Small progress each day adds up to big results."* 🚀
+> _"Every component I build today brings me one step closer to becoming a React developer."_ ⚛️🚀
