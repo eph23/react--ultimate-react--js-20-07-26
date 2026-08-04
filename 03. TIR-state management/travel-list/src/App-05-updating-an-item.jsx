@@ -61,14 +61,9 @@ function Form({ onAddItems }) {
     );
 }
 
-function Item({ item, onDeleteItem, onToggleItems }) {
+function Item({ item, onDeleteItem }) {
     return (
         <li>
-            <input
-                type="checkbox"
-                value={item.packed}
-                onChange={() => onToggleItems(item.id)}
-            />
             <span style={item.packed ? { textDecoration: "line-through" } : {}}>
                 {item.quantity} {item.description}
             </span>
@@ -77,7 +72,7 @@ function Item({ item, onDeleteItem, onToggleItems }) {
     );
 }
 
-function PackingList({ items, onDeleteItem, onToggleItems }) {
+function PackingList({ items, onDeleteItem }) {
     return (
         <div className="list">
             <ul>
@@ -86,7 +81,6 @@ function PackingList({ items, onDeleteItem, onToggleItems }) {
                         item={item}
                         key={item.id}
                         onDeleteItem={onDeleteItem}
-                        onToggleItems={onToggleItems}
                     />
                 ))}
             </ul>
@@ -94,29 +88,12 @@ function PackingList({ items, onDeleteItem, onToggleItems }) {
     );
 }
 
-function State({ items }) {
-    if (!items.length) {
-        return (
-            <footer className="stats">
-                <em>Start adding some items to your packing list🚀</em>
-            </footer>
-        );
-    }
-
-    const numItems = items.length;
-    const numPacked = items.filter((item) => item.packed).length;
-    const percentage = Math.round((numPacked / numItems) * 100);
-
+function State() {
     return (
         <footer className="stats">
-            {percentage === 100 ? (
-                <em>You have everything ready to go!✈️</em>
-            ) : (
-                <em>
-                    You have {numItems} items on your list, and you already
-                    packed {numPacked} ({percentage}%)
-                </em>
-            )}
+            <em>
+                You have X items on your list, and you already packed X (X%)
+            </em>
         </footer>
     );
 }
@@ -132,24 +109,12 @@ function App() {
         setItems((items) => items.filter((item) => item.id !== id));
     }
 
-    function handleToggleItems(id) {
-        setItems((items) =>
-            items.map((item) =>
-                item.id === id ? { ...item, packed: !item.packed } : item,
-            ),
-        );
-    }
-
     return (
         <div className="app">
             <Logo />
             <Form onAddItems={handleAddItems} />
-            <PackingList
-                items={items}
-                onDeleteItem={handleDeleteItem}
-                onToggleItems={handleToggleItems}
-            />
-            <State items={items} />
+            <PackingList items={items} onDeleteItem={handleDeleteItem} />
+            <State />
         </div>
     );
 }
