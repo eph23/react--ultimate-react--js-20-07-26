@@ -77,14 +77,10 @@ function Item({ item, onDeleteItem, onToggleItems }) {
     );
 }
 
-function PackingList({ items, onDeleteItem, onToggleItems, onClearList }) {
+function PackingList({ items, onDeleteItem, onToggleItems }) {
     const [sortBy, setSortBy] = useState("input");
 
     let sortedItems;
-
-    function handleSortBy(event) {
-        setSortBy(event.target.value);
-    }
 
     if (sortBy === "input") {
         sortedItems = items;
@@ -97,9 +93,8 @@ function PackingList({ items, onDeleteItem, onToggleItems, onClearList }) {
     }
 
     if (sortBy === "packed") {
-        sortedItems = items
-            .slice()
-            .sort((a, b) => Number(a.packed) - Number(b.packed));
+        sortedItems =
+            items.slice().sort((a, b) => Number(a.packed) - Number(b.packed));
     }
 
     return (
@@ -117,13 +112,12 @@ function PackingList({ items, onDeleteItem, onToggleItems, onClearList }) {
             <div className="actions">
                 <select
                     value={sortBy}
-                    onChange={(event) => handleSortBy(event)}
+                    onChange={(event) => setSortBy(event.target.value)}
                 >
                     <option value="input">Sort by input</option>
                     <option value="description">Sort by description</option>
                     <option value="packed">Sort by packed status</option>
                 </select>
-                <button onClick={onClearList}>Clear list</button>
             </div>
         </div>
     );
@@ -175,14 +169,6 @@ function App() {
         );
     }
 
-    function handleClearList() {
-        const confirmed = window.confirm(
-            "Are you sure you want to delete all items?",
-        );
-
-        if (confirmed) setItems([]);
-    }
-
     return (
         <div className="app">
             <Logo />
@@ -191,7 +177,6 @@ function App() {
                 items={items}
                 onDeleteItem={handleDeleteItem}
                 onToggleItems={handleToggleItems}
-                onClearList={handleClearList}
             />
             <State items={items} />
         </div>
