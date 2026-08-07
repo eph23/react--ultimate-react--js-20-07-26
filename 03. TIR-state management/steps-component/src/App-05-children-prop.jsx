@@ -6,15 +6,6 @@ const messages = [
     "Invest your new income 🤑",
 ];
 
-function StepMessage({ step, children }) {
-    return (
-        <div className="message">
-            <h3>Step {step}</h3>
-            {children}
-        </div>
-    );
-}
-
 function Button({ textColor, backgroundColor, onClick, children }) {
     return (
         <button
@@ -61,9 +52,9 @@ function App() {
                         <div className={`${step >= 2 ? "active" : ""}`}>2</div>
                         <div className={`${step >= 3 ? "active" : ""}`}>3</div>
                     </div>
-
-                    <StepMessage step={step}>{messages[step - 1]}</StepMessage>
-
+                    <p className="message">
+                        Step {step}: {messages[step - 1]}
+                    </p>
                     <div className="buttons">
                         <Button
                             textColor="#fff"
