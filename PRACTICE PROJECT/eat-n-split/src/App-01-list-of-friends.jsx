@@ -19,10 +19,6 @@ const initialFriends = [
     },
 ];
 
-function Button({ children }) {
-    return <button className="button">{children}</button>;
-}
-
 function Friend({ friend }) {
     return (
         <li>
@@ -39,7 +35,7 @@ function Friend({ friend }) {
                 </p>
             )}
             {friend.balance === 0 && <p>You and {friend.name} are equal</p>}
-            <Button>Select</Button>
+            <button className="button">Select</button>
         </li>
     );
 }
@@ -57,54 +53,11 @@ function FriendList() {
     );
 }
 
-function FormAddFriend() {
-    return (
-        <form className="form-add-friend">
-            <label>📝Friend's Name</label>
-            <input type="text" />
-
-            <label>🖼️Image URL</label>
-            <input type="text" />
-
-            <Button>Add</Button>
-        </form>
-    );
-}
-
-function FormSplitBill() {
-    return (
-        <form className="form-split-bill">
-            <h2>Split a bill with X</h2>
-            <label>💲Total Bill</label>
-            <input type="text" />
-
-            <label>💰 Your Portion</label>
-            <input type="text" />
-
-            <label>💳 X's Portion</label>
-            <input type="text" disabled />
-
-            <label>Who is paying?</label>
-            <select>
-                <option value="user">You</option>
-                <option value="friend">X</option>
-            </select>
-
-            <Button>Split Bill</Button>
-        </form>
-    );
-}
-
 function App() {
     return (
         <div className="app">
             <div className="sidebar">
                 <FriendList />
-                <FormAddFriend />
-                <Button>Add friend</Button>
-            </div>
-            <div>
-                <FormSplitBill />
             </div>
         </div>
     );
