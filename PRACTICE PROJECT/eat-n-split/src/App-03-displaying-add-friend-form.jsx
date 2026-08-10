@@ -50,7 +50,8 @@ function Friend({ friend }) {
     );
 }
 
-function FriendList({ friends }) {
+function FriendList() {
+    const friends = initialFriends;
     return (
         <div>
             <ul>
@@ -62,37 +63,14 @@ function FriendList({ friends }) {
     );
 }
 
-function FormAddFriend({ onAddFriend }) {
-    const [name, setName] = useState("");
-    const [image, setImage] = useState("https://i.pravatar.cc/48");
-
-    function handleAddName(event) {
-        setName(() => event.target.value);
-    }
-    function handleAddImage(event) {
-        setName(() => event.target.value);
-    }
-
-    function handleSubmit(event) {
-        event.preventDefault();
-
-        if (!name || !image) return;
-
-        const id = crypto.randomUUID();
-        const newFriend = { name, image: `${image}?=${id}`, balance: 0, id };
-        onAddFriend(newFriend);
-
-        setName("");
-        setImage("https://i.pravatar.cc/48");
-    }
-
+function FormAddFriend() {
     return (
-        <form className="form-add-friend" onSubmit={handleSubmit}>
+        <form className="form-add-friend">
             <label>📝Friend's Name</label>
-            <input type="text" value={name} onChange={handleAddName} />
+            <input type="text" />
 
             <label>🖼️Image URL</label>
-            <input type="text" value={image} onChange={handleAddImage} />
+            <input type="text" />
 
             <Button>Add</Button>
         </form>
@@ -124,24 +102,17 @@ function FormSplitBill() {
 }
 
 function App() {
-    const [friends, setFriends] = useState(initialFriends);
     const [showAddFriend, setShowAddFriend] = useState(false);
 
     function handleAddShowFriend() {
         setShowAddFriend((showAddFriend) => !showAddFriend);
     }
 
-    function handleAddFriend(friend) {
-        setFriends((friends) => [...friends, friend]);
-        setShowAddFriend(false);
-    }
     return (
         <div className="app">
             <div className="sidebar">
-                <FriendList friends={friends} />
-                {showAddFriend && (
-                    <FormAddFriend onAddFriend={handleAddFriend} />
-                )}
+                <FriendList />
+                {showAddFriend && <FormAddFriend />}
                 <Button onClick={handleAddShowFriend}>
                     {showAddFriend ? "Close" : "Add friend"}
                 </Button>
