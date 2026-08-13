@@ -8,11 +8,13 @@ My goal is to build a solid understanding of modern React by completing every le
 
 ## 📈 Progress
 
-| Section                     | Status         | Date of Completion |
-| --------------------------- | -------------- | ------------------ |
-| 01. Components, Props & JSX | ✅ Completed   | 26/07/2026         |
-| 02. State, Events & Forms   | 🚧 In Progress | ----------         |
-| 03.                         | ⏳ Coming Soon |
+| Section                                     | Status         | Date of Completion |
+| ------------------------------------------- | -------------- | ------------------ |
+| 01. Components, Props & JSX                 | ✅ Completed   | 26/07/2026         |
+| 02. State, Events & Forms                   | ✅ Completed   | 02/08/2026         |
+| 03. State Management                        | ✅ Completed   | 12/08/2026         |
+| 04. Components, Composition and Reusability | 🚧 In Progress | ----------         |
+| 03.                                         | ⏳ Coming Soon |
 
 > **Current Section:** State, Events & Forms
 
