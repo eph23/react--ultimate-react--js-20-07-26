@@ -54,10 +54,10 @@ function Logo() {
     );
 }
 
-function NumResults({ movies }) {
+function NumResults() {
     return (
         <p className="num-results">
-            Found <strong>{movies.length}</strong> results
+            Found <strong>X</strong> results
         </p>
     );
 }
@@ -76,12 +76,12 @@ function Search() {
     );
 }
 
-function NavBar({ movies }) {
+function NavBar() {
     return (
         <nav className="nav-bar">
             <Logo />
             <Search />
-            <NumResults movies={movies} />
+            <NumResults />
         </nav>
     );
 }
@@ -101,7 +101,9 @@ function Movie({ movie }) {
     );
 }
 
-function MovieList({ movies }) {
+function MovieList() {
+    const [movies, setMovies] = useState(tempMovieData);
+
     return (
         <ul className="list">
             {movies?.map((movie) => (
@@ -111,7 +113,7 @@ function MovieList({ movies }) {
     );
 }
 
-function ListBox({ movies }) {
+function ListBox() {
     const [isOpen1, setIsOpen1] = useState(true);
 
     return (
@@ -122,7 +124,7 @@ function ListBox({ movies }) {
             >
                 {isOpen1 ? "–" : "+"}
             </button>
-            {isOpen1 && <MovieList movies={movies} />}
+            {isOpen1 && <MovieList />}
         </div>
     );
 }
@@ -190,7 +192,7 @@ function WatchedMovieList({ watched }) {
     );
 }
 
-function WatchedBox({ movies }) {
+function WatchedBox() {
     const [watched, setWatched] = useState(tempWatchedData);
     const [isOpen2, setIsOpen2] = useState(true);
 
@@ -213,22 +215,20 @@ function WatchedBox({ movies }) {
     );
 }
 
-function Main({ movies }) {
+function Main() {
     return (
         <main className="main">
-            <ListBox movies={movies} />
+            <ListBox />
             <WatchedBox />
         </main>
     );
 }
 
 export default function App() {
-    const [movies, setMovies] = useState(tempMovieData);
-
     return (
         <>
-            <NavBar movies={movies} />
-            <Main movies={movies} />
+            <NavBar />
+            <Main />
         </>
     );
 }
