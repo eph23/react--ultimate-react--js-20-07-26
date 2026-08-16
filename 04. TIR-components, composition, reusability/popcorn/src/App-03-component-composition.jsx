@@ -105,22 +105,21 @@ function MovieList({ movies }) {
     );
 }
 
-function Box({ children }) {
-    const [isOpen, setIsOpen] = useState(true);
+function ListBox({ children }) {
+    const [isOpen1, setIsOpen1] = useState(true);
 
     return (
         <div className="box">
             <button
                 className="btn-toggle"
-                onClick={() => setIsOpen((open) => !open)}
+                onClick={() => setIsOpen1((open) => !open)}
             >
-                {isOpen ? "–" : "+"}
+                {isOpen1 ? "–" : "+"}
             </button>
-            {isOpen && children}
+            {isOpen1 && children}
         </div>
     );
 }
-
 
 function WatchedSummery({ watched }) {
     const avgImdbRating = average(watched.map((movie) => movie.imdbRating));
@@ -185,13 +184,35 @@ function WatchedMovieList({ watched }) {
     );
 }
 
+function WatchedBox({ movies }) {
+    const [watched, setWatched] = useState(tempWatchedData);
+    const [isOpen2, setIsOpen2] = useState(true);
+
+    return (
+        <div className="box">
+            <button
+                className="btn-toggle"
+                onClick={() => setIsOpen2((open) => !open)}
+            >
+                {isOpen2 ? "–" : "+"}
+            </button>
+            {isOpen2 && (
+                <>
+                    <WatchedSummery watched={watched} />
+
+                    <WatchedMovieList watched={watched} />
+                </>
+            )}
+        </div>
+    );
+}
+
 function Main({ children }) {
     return <main className="main">{children}</main>;
 }
 
 export default function App() {
     const [movies, setMovies] = useState(tempMovieData);
-    const [watched, setWatched] = useState(tempWatchedData);
 
     return (
         <>
@@ -201,15 +222,11 @@ export default function App() {
                 <NumResults movies={movies} />
             </NavBar>
             <Main>
-                <Box>
+                <ListBox>
                     <MovieList movies={movies} />
-                </Box>
-                <Box>
-                    <WatchedSummery watched={watched} />
-                    <WatchedMovieList watched={watched} />
-                </Box>
+                </ListBox>
+                <WatchedBox />
             </Main>
         </>
     );
 }
- 
